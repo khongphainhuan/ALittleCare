@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "656702968028",
+    "project_id": "a-little-care",
+    "storage_bucket": "a-little-care.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:656702968028:android:4e02ce1f05df0feff8a419",
+        "android_client_info": {
+          "package_name": "com.nhuanmai.alittlecare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU9Buxf-uhWx8N9aGi_yMLaY-FC3A6TC8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
