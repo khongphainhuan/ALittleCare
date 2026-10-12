@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">A Little Care</string>
+
+    <!-- Màn 05 · Đăng nhập -->
+    <string name="login_title">Chào mừng đến với A\u00A0Little\u00A0Care</string>
+    <string name="login_subtitle">Đăng nhập để lưu thiết lập và kết nối với người\u00A0thân\u00A0của\u00A0bạn.</string>
+    <string name="login_google_button">Tiếp tục với Google</string>
+    <string name="login_terms">Bằng việc tiếp tục, bạn đồng ý với Điều khoản sử dụng và Chính sách quyền riêng tư.</string>
 </resources>

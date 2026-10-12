@@ -4,14 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.nhuanmai.alittlecare.ui.screens.LoginScreen
 import com.nhuanmai.alittlecare.ui.theme.ALittleCareTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,31 +13,13 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ALittleCareTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                // Phần B sẽ thay bằng trạng thái thật từ LoginViewModel
+                LoginScreen(
+                    isLoading = false,
+                    errorMessage = null,
+                    onGoogleSignInClick = {},
+                )
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hôm nay bạn vẫn ổn chứ?",
-        modifier = modifier,
-        style = MaterialTheme.typography.headlineMedium,
-        color = MaterialTheme.colorScheme.primary
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ALittleCareTheme {
-        Greeting("Android")
     }
 }
