@@ -14,9 +14,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -24,9 +26,31 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.nhuanmai.alittlecare.R
 import com.nhuanmai.alittlecare.ui.components.PrimaryButton
 import com.nhuanmai.alittlecare.ui.theme.ALittleCareTheme
+
+// Nối giao diện (LoginScreen) với logic (LoginViewModel)
+@Composable
+fun LoginRoute(
+    onSignedIn: () -> Unit,
+    viewModel: LoginViewModel = viewModel(),
+) {
+    val context = LocalContext.current
+    val state = viewModel.uiState
+
+    // Đăng nhập xong thì báo cho bên ngoài để chuyển màn
+    LaunchedEffect(state.isSignedIn) {
+        if (state.isSignedIn) onSignedIn()
+    }
+
+    LoginScreen(
+        isLoading = state.isLoading,
+        errorMessage = state.errorMessageRes?.let { stringResource(it) },
+        onGoogleSignInClick = { viewModel.signInWithGoogle(context) },
+    )
+}
 
 // Màn 05 · Đăng nhập (Figma node 1:131).
 // Màn hình chỉ hiển thị; việc đăng nhập do bên gọi xử lý qua onGoogleSignInClick.

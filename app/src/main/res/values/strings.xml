@@ -6,4 +6,7 @@
     <string name="login_subtitle">Đăng nhập để lưu thiết lập và kết nối với người\u00A0thân\u00A0của\u00A0bạn.</string>
     <string name="login_google_button">Tiếp tục với Google</string>
     <string name="login_terms">Bằng việc tiếp tục, bạn đồng ý với Điều khoản sử dụng và Chính sách quyền riêng tư.</string>
+    <string name="login_error_no_account">Chưa có tài khoản Google trên máy. Hãy thêm tài khoản trong Cài đặt rồi thử lại.</string>
+    <string name="login_error_network">Không có kết nối mạng. Kiểm tra mạng rồi thử lại nhé.</string>
+    <string name="login_error_generic">Đăng nhập chưa thành công. Bạn thử lại nhé.</string>
 </resources>
