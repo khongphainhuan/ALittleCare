@@ -9,4 +9,8 @@
     <string name="login_error_no_account">Chưa có tài khoản Google trên máy. Hãy thêm tài khoản trong Cài đặt rồi thử lại.</string>
     <string name="login_error_network">Không có kết nối mạng. Kiểm tra mạng rồi thử lại nhé.</string>
     <string name="login_error_generic">Đăng nhập chưa thành công. Bạn thử lại nhé.</string>
+    <!-- Màn 09 · Trang chủ -->
+    <string name="home_greeting">Xin chào, %1$s</string>
+    <string name="home_default_name">bạn</string>
+    <string name="home_sign_out">Đăng xuất</string>
 </resources>

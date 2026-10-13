@@ -11,6 +11,9 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.nhuanmai.alittlecare.R
 import kotlinx.coroutines.tasks.await
+import android.util.Log
+import androidx.credentials.ClearCredentialStateRequest
+import androidx.credentials.exceptions.ClearCredentialException
 
 // Nơi duy nhất trong app làm việc với Firebase Authentication và Google.
 class AuthRepository {
@@ -46,5 +49,16 @@ class AuthRepository {
         val firebaseCredential = GoogleAuthProvider.getCredential(idToken, null)
         val result = auth.signInWithCredential(firebaseCredential).await()
         return result.user ?: throw IllegalStateException("Firebase không trả về người dùng")
+    }
+    // Đăng xuất khỏi Firebase và xoá lựa chọn tài khoản Google đã nhớ,
+    // để lần sau bấm "Tiếp tục với Google" được chọn lại tài khoản.
+    suspend fun signOut(context: Context) {
+        auth.signOut()
+        try {
+            CredentialManager.create(context).clearCredentialState(ClearCredentialStateRequest())
+        } catch (e: ClearCredentialException) {
+            // Firebase đã đăng xuất xong; lỗi xoá bộ nhớ tạm này không ảnh hưởng người dùng
+            Log.w("AuthRepository", "Không xoá được trạng thái đăng nhập Google", e)
+        }
     }
 }
