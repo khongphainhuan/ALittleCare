@@ -10,6 +10,7 @@ import com.nhuanmai.alittlecare.model.CheckInSummary
 import kotlinx.coroutines.tasks.await
 import java.time.LocalDate
 import java.time.ZoneId
+import com.google.firebase.firestore.DocumentSnapshot
 
 // Số ngày gần nhất đọc về để tính chuỗi liên tiếp (tối đa 1 năm)
 private const val MAX_DAYS_TO_LOAD = 365L
@@ -55,8 +56,7 @@ class CheckInRepository {
         // Giờ xác nhận hôm nay (null nếu chưa có)
         val checkedInTodayAt = documents
             .firstOrNull { it.id == today.toString() }
-            ?.getTimestamp(FIELD_CHECKED_IN_AT)
-            ?.toDate()
+            ?.getTimestamp(FIELD_CHECKED_IN_AT, DocumentSnapshot.ServerTimestampBehavior.ESTIMATE)            ?.toDate()
             ?.toInstant()
             ?.atZone(ZoneId.systemDefault())
             ?.toLocalTime()

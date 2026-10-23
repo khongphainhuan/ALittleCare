@@ -9,8 +9,22 @@
     <string name="login_error_no_account">Chưa có tài khoản Google trên máy. Hãy thêm tài khoản trong Cài đặt rồi thử lại.</string>
     <string name="login_error_network">Không có kết nối mạng. Kiểm tra mạng rồi thử lại nhé.</string>
     <string name="login_error_generic">Đăng nhập chưa thành công. Bạn thử lại nhé.</string>
+
     <!-- Màn 09 · Trang chủ -->
-    <string name="home_greeting">Xin chào, %1$s</string>
+    <string name="home_greeting_morning">Chào buổi sáng,</string>
+    <string name="home_greeting_afternoon">Chào buổi chiều,</string>
+    <string name="home_greeting_evening">Chào buổi tối,</string>
     <string name="home_default_name">bạn</string>
+    <string name="home_question">Hôm nay bạn vẫn ổn chứ?</string>
+    <string name="home_check_in_button">Tôi vẫn ổn</string>
+    <string name="home_checked_in_button">Đã xác nhận</string>
+    <string name="home_reminder_info">Nhắc lúc %1$s · Hạn xác nhận trước 0h</string>
+    <string name="home_checked_in_info">Đã xác nhận lúc %1$s · Hẹn gặp lại ngày mai</string>
+    <string name="home_streak_label">ngày liên tiếp</string>
+    <string name="home_relatives_label">người thân theo dõi</string>
+    <string name="home_check_in_pending">Đã ghi nhận trên máy. App sẽ tự gửi đi khi có mạng.</string>
+    <string name="home_error_load">Chưa tải được dữ liệu. Kiểm tra mạng rồi thử lại nhé.</string>
+    <string name="home_error_check_in">Chưa ghi nhận được. Bạn thử lại nhé.</string>
+    <string name="home_retry">Thử lại</string>
     <string name="home_sign_out">Đăng xuất</string>
 </resources>
