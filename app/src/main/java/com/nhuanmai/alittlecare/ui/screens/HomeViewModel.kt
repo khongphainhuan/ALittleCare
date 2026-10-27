@@ -14,6 +14,7 @@ import com.nhuanmai.alittlecare.data.CheckInRepository
 import com.nhuanmai.alittlecare.model.CheckInSummary
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
+import com.nhuanmai.alittlecare.reminder.ReminderScheduler
 
 private const val TAG = "HomeViewModel"
 
@@ -87,6 +88,7 @@ class HomeViewModel : ViewModel() {
     // TẠM THỜI ở Trang chủ: chuyển sang màn Cài đặt khi có màn đó
     fun signOut(context: Context) {
         viewModelScope.launch {
+            ReminderScheduler.cancelAll(context) // đăng xuất thì không nhắc nữa
             authRepository.signOut(context)
             uiState = uiState.copy(isSignedOut = true)
         }

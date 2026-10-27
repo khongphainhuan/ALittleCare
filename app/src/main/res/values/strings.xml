@@ -27,4 +27,12 @@
     <string name="home_error_check_in">Chưa ghi nhận được. Bạn thử lại nhé.</string>
     <string name="home_retry">Thử lại</string>
     <string name="home_sign_out">Đăng xuất</string>
+
+    <!-- Thông báo nhắc hằng ngày -->
+    <string name="reminder_channel_name">Nhắc xác nhận hằng ngày</string>
+    <string name="reminder_channel_description">Nhắc bạn bấm \"Tôi vẫn ổn\" mỗi ngày</string>
+    <string name="reminder_morning_title">Chào buổi sáng!</string>
+    <string name="reminder_morning_text">Hôm nay bạn vẫn ổn chứ? Chạm để xác nhận nhé.</string>
+    <string name="reminder_evening_title">Sắp hết ngày rồi</string>
+    <string name="reminder_evening_text">Hôm nay bạn chưa xác nhận. Chạm để báo \"Tôi vẫn ổn\" nhé.</string>
 </resources>

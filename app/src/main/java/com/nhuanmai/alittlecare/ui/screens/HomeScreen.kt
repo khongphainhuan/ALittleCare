@@ -1,5 +1,8 @@
 package com.nhuanmai.alittlecare.ui.screens
 
+import android.Manifest
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -41,6 +44,9 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.nhuanmai.alittlecare.R
 import com.nhuanmai.alittlecare.model.CheckInSummary
+import com.nhuanmai.alittlecare.reminder.ReminderNotifier
+import com.nhuanmai.alittlecare.reminder.ReminderScheduler
+import com.nhuanmai.alittlecare.reminder.ReminderType
 import com.nhuanmai.alittlecare.ui.components.SecondaryButton
 import com.nhuanmai.alittlecare.ui.components.SkeletonBox
 import com.nhuanmai.alittlecare.ui.theme.ALittleCareTheme
@@ -48,9 +54,6 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
-
-// Giờ nhắc mặc định; sau này người dùng chỉnh được ở màn Thiết lập (Mức 2)
-private val DEFAULT_REMINDER_TIME: LocalTime = LocalTime.of(8, 0)
 
 // Mốc giờ đổi lời chào
 private const val MORNING_START_HOUR = 5
@@ -74,6 +77,20 @@ fun HomeRoute(
 ) {
     val context = LocalContext.current
     val state = viewModel.uiState
+
+    // Hộp thoại xin quyền thông báo (Android 13+). Được hay không vẫn lên lịch:
+    // không có quyền thì ReminderNotifier tự bỏ qua, cấp quyền sau vẫn nhắc được.
+    val notificationPermissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission(),
+    ) { }
+
+    // Vào Trang chủ (đã đăng nhập): lên lịch nhắc, xin quyền nếu chưa có
+    LaunchedEffect(Unit) {
+        ReminderScheduler.scheduleAll(context)
+        if (!ReminderNotifier.hasNotificationPermission(context)) {
+            notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+    }
 
     // Đăng xuất xong thì báo cho bên ngoài để quay về màn Đăng nhập
     LaunchedEffect(state.isSignedOut) {
@@ -168,7 +185,7 @@ fun HomeScreen(
                     text = if (checkedInAt != null) {
                         stringResource(R.string.home_checked_in_info, checkedInAt.format(TIME_FORMATTER))
                     } else {
-                        stringResource(R.string.home_reminder_info, DEFAULT_REMINDER_TIME.format(TIME_FORMATTER))
+                        stringResource(R.string.home_reminder_info, ReminderType.MORNING.time.format(TIME_FORMATTER))
                     },
                     style = MaterialTheme.typography.bodySmall.copy(fontSize = 13.sp, fontWeight = FontWeight.Medium),
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
