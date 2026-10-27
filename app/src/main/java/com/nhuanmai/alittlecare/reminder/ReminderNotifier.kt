@@ -41,7 +41,7 @@ object ReminderNotifier {
             .setSmallIcon(R.drawable.ic_heart)
             .setContentTitle(context.getString(type.titleRes))
             .setContentText(context.getString(type.textRes))
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true) // chạm vào thì thông báo tự biến mất
             .build()
@@ -59,7 +59,7 @@ object ReminderNotifier {
         val channel = NotificationChannel(
             CHANNEL_ID,
             context.getString(R.string.reminder_channel_name),
-            NotificationManager.IMPORTANCE_DEFAULT,
+            NotificationManager.IMPORTANCE_HIGH, // hiện popup trượt xuống từ đỉnh màn hình
         ).apply {
             description = context.getString(R.string.reminder_channel_description)
         }
