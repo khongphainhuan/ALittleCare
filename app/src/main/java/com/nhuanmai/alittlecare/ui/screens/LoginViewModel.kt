@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.FirebaseNetworkException
 import com.nhuanmai.alittlecare.R
+import com.nhuanmai.alittlecare.data.AnalyticsLogger
 import com.nhuanmai.alittlecare.data.AuthRepository
 import kotlinx.coroutines.launch
 
@@ -41,6 +42,7 @@ class LoginViewModel : ViewModel() {
         viewModelScope.launch {
             uiState = try {
                 authRepository.signInWithGoogle(context)
+                AnalyticsLogger.logLogin()
                 LoginUiState(isSignedIn = true)
             } catch (e: GetCredentialCancellationException) {
                 LoginUiState() // người dùng tự đóng hộp chọn tài khoản: không coi là lỗi

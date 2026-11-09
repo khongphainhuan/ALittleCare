@@ -13,6 +13,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.nhuanmai.alittlecare.MainActivity
 import com.nhuanmai.alittlecare.R
+import com.nhuanmai.alittlecare.data.AnalyticsLogger
 
 // Kênh thông báo của app (người dùng thấy tên kênh này trong Cài đặt điện thoại)
 private const val CHANNEL_ID = "daily_reminder"
@@ -47,6 +48,7 @@ object ReminderNotifier {
             .build()
 
         NotificationManagerCompat.from(context).notify(type.notificationId, notification)
+        AnalyticsLogger.logReminderShown(type.name.lowercase()) // "morning" hoặc "evening"
     }
 
     fun hasNotificationPermission(context: Context): Boolean =

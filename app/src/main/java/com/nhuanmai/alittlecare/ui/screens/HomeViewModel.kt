@@ -9,6 +9,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nhuanmai.alittlecare.R
+import com.nhuanmai.alittlecare.data.AnalyticsLogger
 import com.nhuanmai.alittlecare.data.AuthRepository
 import com.nhuanmai.alittlecare.data.CheckInRepository
 import com.nhuanmai.alittlecare.model.CheckInSummary
@@ -73,9 +74,11 @@ class HomeViewModel : ViewModel() {
                     checkInRepository.checkInToday()
                 } != null
 
+                val summary = checkInRepository.getSummary()
+                AnalyticsLogger.logCheckIn(summary.streakDays)
                 uiState.copy(
                     isCheckingIn = false,
-                    summary = checkInRepository.getSummary(),
+                    summary = summary,
                     infoMessageRes = if (isSynced) null else R.string.home_check_in_pending,
                 )
             } catch (e: Exception) {

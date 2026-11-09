@@ -43,6 +43,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.nhuanmai.alittlecare.R
+import com.nhuanmai.alittlecare.announcement.AnnouncementNotifier
 import com.nhuanmai.alittlecare.model.CheckInSummary
 import com.nhuanmai.alittlecare.reminder.ReminderNotifier
 import com.nhuanmai.alittlecare.reminder.ReminderScheduler
@@ -84,9 +85,10 @@ fun HomeRoute(
         ActivityResultContracts.RequestPermission(),
     ) { }
 
-    // Vào Trang chủ (đã đăng nhập): lên lịch nhắc, xin quyền nếu chưa có
+    // Vào Trang chủ (đã đăng nhập): lên lịch nhắc, sẵn sàng nhận tin chung, xin quyền nếu chưa có
     LaunchedEffect(Unit) {
         ReminderScheduler.scheduleAll(context)
+        AnnouncementNotifier.setUp(context)
         if (!ReminderNotifier.hasNotificationPermission(context)) {
             notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
         }

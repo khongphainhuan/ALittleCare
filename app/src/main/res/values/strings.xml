@@ -35,4 +35,8 @@
     <string name="reminder_morning_text">Hôm nay bạn vẫn ổn chứ? Chạm để xác nhận nhé.</string>
     <string name="reminder_evening_title">Sắp hết ngày rồi</string>
     <string name="reminder_evening_text">Hôm nay bạn chưa xác nhận. Chạm để báo \"Tôi vẫn ổn\" nhé.</string>
+
+    <!-- Thông báo chung (Cloud Messaging) -->
+    <string name="announcement_channel_name">Tin từ A Little Care</string>
+    <string name="announcement_channel_description">Mẹo sử dụng, cập nhật mới và thông báo chung</string>
 </resources>

@@ -56,7 +56,8 @@ class CheckInRepository {
         // Giờ xác nhận hôm nay (null nếu chưa có)
         val checkedInTodayAt = documents
             .firstOrNull { it.id == today.toString() }
-            ?.getTimestamp(FIELD_CHECKED_IN_AT, DocumentSnapshot.ServerTimestampBehavior.ESTIMATE)            ?.toDate()
+            ?.getTimestamp(FIELD_CHECKED_IN_AT, DocumentSnapshot.ServerTimestampBehavior.ESTIMATE)
+            ?.toDate()
             ?.toInstant()
             ?.atZone(ZoneId.systemDefault())
             ?.toLocalTime()
